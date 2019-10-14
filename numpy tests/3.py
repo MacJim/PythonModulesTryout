@@ -9,13 +9,14 @@ import numpy as np
 # print(np.exp(a))
 # print(np.sqrt(a))
 
+
 # MARK: 2. Indexing, slicing and iterating
 # a = np.arange(10) ** 3
 #
 # print(a)
 # print(a[2])
 # print(a[2:5])
-# print(a ** (1 / 3.))    # FIXME: What does this do?
+# print(a ** (1 / 3.))    # What does this do? Just a ^ (1 / 3) power 3 root.
 #
 # a[0:6:2] = 1000    # equivalent to a[:6:2] = -1000; from start to position 6, exclusive, set every 2nd element to -1000
 # print(a)
@@ -40,7 +41,7 @@ import numpy as np
 # print(a[2, :])    # [7, 8, 9]
 # print(a[:, 2])    # [3, 6, 9]
 #
-# print(a[-1, :])    # The final row [7, 8, 9]
+# print(a[-1, :])    # The final row [7, 8, 9]. This is really Python styled!
 #
 # c = np.array( [[[  0,  1,  2],    # a 3D array (two stacked 2D arrays)
 #                  [ 10, 12, 13]],
@@ -51,7 +52,7 @@ import numpy as np
 # for aRow in c:
 #     print(aRow)
 #
-# for anElement in c.flat:    # This treats the multi-directional array as a 1D array.
+# for anElement in c.flat:    # This treats the multi-directional array as a 1D array. `flat` seems to be only available to `for ` iterations.
 #     print(anElement)
 
 
@@ -68,7 +69,8 @@ import numpy as np
 # print(a.T)
 #
 # # Unravel and ravel actually have the same meaning...
-# print(a.ravel())    # Flattens a multi directional array into a 1D array. [ 1  2  3  4  5  6  7  8  9 10 11 12]
+# # Flattens a multi directional array into a 1D array. This can be very useful.
+# print(a.ravel())    # [ 1  2  3  4  5  6  7  8  9 10 11 12]
 #
 # # `reshape` returns a copy while `resize` re-sizes in place.
 # print(a.reshape(3, 4))

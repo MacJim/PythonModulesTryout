@@ -43,8 +43,8 @@ import numpy as np
 # print(d.dtype)    # complex128
 
 # MARK: 4
-# # Random value on [0, 1).
-# a = np.random.random((2, 3))
+# # Random value on [0, 1) of a specific dimension.
+# a = np.random.random((2, 3))    # Height: 2, width: 3 matrix with random values.
 # print(a)
 #
 # # Element wise operations, rather than row / column wise operations 😂.
