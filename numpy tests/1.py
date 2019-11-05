@@ -26,7 +26,21 @@ import numpy as np
 # unusedSize = a.size
 
 
-# MARK: 2. Basics
+# MARK: 2. Automatic reshape
+# a = np.arange(30)    # 0 ~ 30
+
+# # -1 means auto in `reshape`.
+# b = a.reshape(-1, 3)    # height: 10 (automatic), width: 3
+
+# c = a.reshape(2, -1, 3)    # 2 * 5 * 3
+# # print(c.shape)
+# # print(c)
+
+# # Fails. Can only specify one unknown dimension.
+# # d = a.reshape(-1, -1, 3)
+
+
+# MARK: 3. Basics
 # b = np.array([6, 7, 8])
 #
 # # <class 'numpy.ndarray'>
@@ -35,7 +49,7 @@ import numpy as np
 # elementType = b.dtype
 
 
-# MARK: 3. Array creation
+# MARK: 4. Array creation
 # # a = np.array(2, 3, 4)    # This is WRONG!
 # b = np.array([2, 3, 4])    # This is correct.
 #
@@ -58,7 +72,7 @@ import numpy as np
 # fType = f.dtype
 
 
-# MARK: 4. Array initialization 2
+# MARK: 5. Array initialization 2
 # # [0:5]
 # a = np.arange(5)
 # aType = a.dtype    # int64
@@ -72,7 +86,7 @@ import numpy as np
 # cType = c.dtype    # float64
 
 
-# MARK: 5
+# MARK: 6
 # # Start (included), end (INCLUDED), numbers count
 # a = np.linspace(0, 2, 6)    # [0. 0.4 0.8 1.2 1.6 2. ]
 # aType = a.dtype    # float64
@@ -85,7 +99,7 @@ import numpy as np
 # y = np.sin(x)
 
 
-# MARK: 6. Printing arrays
+# MARK: 7. Printing arrays
 # a = np.arange(6)
 # print(a)    # [0 1 2 3 4 5]
 #
