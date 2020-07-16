@@ -15,7 +15,7 @@ import PIL.Image as Image
 # print("a1:", a1)
 
 
-source_image = Image.open("abc.png")
+source_image = Image.open("../abc.png")
 source_array = np.array(source_image)
 print("Source np array shape:", source_array.shape)    # (316, 316, 4)
 

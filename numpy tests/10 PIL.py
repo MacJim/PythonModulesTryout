@@ -8,7 +8,7 @@ import numpy as np
 
 
 def test1():
-    image: Image.Image = Image.open("abc.png")
+    image: Image.Image = Image.open("../abc.png")
     print(image.mode, image.size)
 
     array = np.array(image)
@@ -18,7 +18,7 @@ def test1():
 
 
 def test2():
-    image: Image.Image = Image.open("abc.png")
+    image: Image.Image = Image.open("../abc.png")
     print("Mode:", image.mode)
 
     array = np.array(image)
