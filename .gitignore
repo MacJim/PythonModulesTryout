@@ -2,6 +2,10 @@
 /.vscode
 /.idea
 
+# Outputs
+/numpy tests/out
+/PIL tests/out
+
 # "Old" files
 *.old*
 

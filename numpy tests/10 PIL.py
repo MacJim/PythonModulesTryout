@@ -29,9 +29,9 @@ def test2():
     # padded_image = PIL.ImageOps.pad(image, (400, 400), color=(255, 255, 255))    # The `pad` function simply scales the original image. Not sure about its name origin.
     expanded_image = PIL.ImageOps.expand(image, border=100, fill=(255, 255, 255, 255))
     print("Expanded mode:", expanded_image.mode)
-    expanded_image.save("abc2.png")
+    expanded_image.save("out/abc2.png")
 
 
 os.chdir(os.path.abspath(os.path.dirname(__file__)))
-test1()
-# test2()
+# test1()
+test2()
