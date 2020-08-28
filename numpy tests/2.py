@@ -18,13 +18,21 @@ import numpy as np
 
 
 # MARK: 2. Matrix operations.
-# i = np.array([[1, 0], [0, 1]])
-# a = np.array([[4, 3], [2, 1]])
-# b = np.array([[1, 2], [3, 4]])
-#
-# # Matrix multiplication.
-# print(a @ b)
-# print(i @ b)
+i = np.array([[1, 0], [0, 1]])
+a = np.array([[4, 3], [2, 1]])
+b = np.array([[1, 2], [3, 4]])
+c = np.array([[2], [2]])
+d = np.array([[2, 2]])
+
+test_1d = [2, 2]
+
+# Matrix multiplication.
+print("a:", a @ b)
+print("b:", i @ b)
+print("c:", i @ c)
+print("d:", d @ i)
+print("test1d:", test_1d @ i)
+print("test1d:", i @ test_1d)
 
 
 # MARK: 3
