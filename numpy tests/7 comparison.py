@@ -100,6 +100,25 @@ def test_whole_1():
     print(f"(a == b).all(): {(a == b).all()}")    # True
 
 
+def test_whole_2():
+    """
+    Compare using `np.array_equal` and `np.array_equiv`.
+    """
+    a = np.arange(10)
+    b = np.arange(10, dtype=np.float32)
+    c = np.array([])
+    d = np.arange(10).reshape(2, -1)
+    e = np.array([a, a])
+
+    print(f"array_equal(a, b): {np.array_equal(a, b)}")    # True
+    print(f"array_equal(a, c): {np.array_equal(a, c)}")    # False
+    print(f"array_equal(a, d): {np.array_equal(a, d)}")    # False
+
+    print(f"array_equiv(a, b): {np.array_equiv(a, b)}")    # True
+    print(f"array_equiv(a, d): {np.array_equiv(a, d)}")    # False
+    print(f"array_equiv(a, e): {np.array_equiv(a, e)}")    # True
+
+
 # MARK: - Float precision
 def test_precision_1():
     """
@@ -148,8 +167,9 @@ def test_precision_1():
 # test_element_wise_1()
 # test_element_wise_2()
 # test_element_wise_3()
-test_element_wise_4()
+# test_element_wise_4()
 
 # test_whole_1()
+test_whole_2()
 
 # test_precision_1()
