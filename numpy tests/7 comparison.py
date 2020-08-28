@@ -1,5 +1,7 @@
 # Numpy comparisons.
 
+import sys
+
 import numpy as np
 
 
@@ -41,12 +43,61 @@ def test_element_wise_2():
     print(f"b: {b.dtype}, {b}")    # float32, [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
     print(f"c: {c.dtype}, {c}")    # int32, [0 1 2 3 4 5 6 7 8 9]
     # `repr`: The "official" string representation that can be used to recreate an object.
+    # https://docs.python.org/3/reference/datamodel.html#object.__repr__
     print(f"repr: a: {repr(a[6])}, b: {b[6]}, c: {c[6]}")    # a: 6, b: 6.0, c: 6
 
     print(f"a > b: {a > b}")    # [False False False False False False False False False False]
     print(f"a == b: {a == b}")    # [ True  True  True  True  True  True  True  True  True  True] This is unexpected!
     print(f"a == c: {a == c}")    # [ True  True  True  True  True  True  True  True  True  True]
     print(f"b == c: {b == c}")    # [ True  True  True  True  True  True  True  True  True  True]
+
+
+def test_element_wise_3():
+    """
+    Special case 1: Different shapes.
+
+    DeprecationWarning: elementwise comparison failed; this will raise an error in the future.
+
+    Must make sure they have the same shape before using `==`.
+    """
+    a = np.arange(10)
+    c = np.arange(10).reshape(2, -1)
+    d = np.arange(6)
+    print(f"a == c: {a == c}")    # False
+    print(f"a == d: {a == d}")    # False
+    try:
+        print(f"(a == c).all(): {(a == c).all()}")
+    except:
+        # exception: (<class 'AttributeError'>, AttributeError("'bool' object has no attribute 'all'"), <traceback object at 0x7fde6f979dc0>)
+        print(f"(a == c).all() exception: {sys.exc_info()}")
+
+
+def test_element_wise_4():
+    """
+    Special case 2: Empty array.
+
+    DeprecationWarning: elementwise comparison failed; this will raise an error in the future.
+    """
+    a = np.arange(6)
+    b = np.array([])
+    c = np.array([])
+    print(f"b shape: {b.shape}")
+    print(f"a == b: {a == b}")    # False
+    print(f"b == c: {b == c}")    # []
+
+
+# MARK: - Whole array comparison
+# https://stackoverflow.com/questions/10580676/comparing-two-numpy-arrays-for-equality-element-wise
+def test_whole_1():
+    """
+    Compare using `==` and `all()`.
+
+    `all()`: All elements along an axis is `True`.
+    """
+    a = np.arange(10)
+    b = np.arange(10, dtype=np.float32)
+
+    print(f"(a == b).all(): {(a == b).all()}")    # True
 
 
 # MARK: - Float precision
@@ -95,6 +146,10 @@ def test_precision_1():
 # test_number_1()
 
 # test_element_wise_1()
-test_element_wise_2()
+# test_element_wise_2()
+# test_element_wise_3()
+test_element_wise_4()
 
-test_precision_1()
+# test_whole_1()
+
+# test_precision_1()
