@@ -90,14 +90,21 @@ def test_element_wise_4():
 # https://stackoverflow.com/questions/10580676/comparing-two-numpy-arrays-for-equality-element-wise
 def test_whole_1():
     """
-    Compare using `==` and `all()`.
+    Compare using:
+
+    - `==` and `all()`
+    - `!=` and `any()`.
 
     `all()`: All elements along an axis is `True`.
     """
-    a = np.arange(10)
-    b = np.arange(10, dtype=np.float32)
+    a: np.ndarray = np.arange(10)
+    b: np.ndarray = np.arange(10, dtype=np.float32)
+    c: np.ndarray = np.arange(6, 16)
 
     print(f"(a == b).all(): {(a == b).all()}")    # True
+    print(f"(a != b).any(): {(a != b).any()}")    # False
+    print(f"(a == c).all(): {(a == c).all()}")    # False
+    print(f"(a != c).any(): {(a != c).any()}")    # True
 
 
 def test_whole_2():
@@ -169,7 +176,7 @@ def test_precision_1():
 # test_element_wise_3()
 # test_element_wise_4()
 
-# test_whole_1()
-test_whole_2()
+test_whole_1()
+# test_whole_2()
 
 # test_precision_1()
