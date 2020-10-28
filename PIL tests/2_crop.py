@@ -92,6 +92,25 @@ def test_out_of_boundary_crop_2():
     top_cropped_image_1.save("out/top_1.png")
 
 
+def test_out_of_boundary_crop_3():
+    """
+    Using completely out-of-boundary crop boxes will produce transparent (RGBA) or pure black (RGB) images.
+    """
+    transparent_image: Image.Image = Image.open("../sfu1.png").convert("RGBA")
+
+    out_of_boundary_image_1: Image.Image = transparent_image.crop((-600, -600, -200, -200))
+    print(f"Out of boundary image 1 mode: {out_of_boundary_image_1.mode}")    # RGB
+    print(f"Out of boundary image 1 size: {out_of_boundary_image_1.size}")    # (400, 400)
+    out_of_boundary_image_1.save("out/out_of_boundary_1.png")    # Pure black
+
+    solid_image: Image.Image = Image.open("../sfu1.png").convert("RGB")
+
+    out_of_boundary_image_2: Image.Image = solid_image.crop((solid_image.size[0] + 600, solid_image.size[1] + 600, solid_image.size[0] + 1000, solid_image.size[1] + 1000))
+    print(f"Out of boundary image 2 mode: {out_of_boundary_image_2.mode}")    # RGB
+    print(f"Out of boundary image 2 size: {out_of_boundary_image_2.size}")    # (400, 400)
+    out_of_boundary_image_2.save("out/out_of_boundary_2.png")    # Pure black
+
+
 if (__name__ == "__main__"):
     os.chdir(os.path.dirname(__file__))
     # print(f"Working directory: {os.getcwd()}")
@@ -100,4 +119,5 @@ if (__name__ == "__main__"):
     # test_crop_2()
 
     # test_out_of_boundary_crop_1()
-    test_out_of_boundary_crop_2()
+    # test_out_of_boundary_crop_2()
+    test_out_of_boundary_crop_3()
