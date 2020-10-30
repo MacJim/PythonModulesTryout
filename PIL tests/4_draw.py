@@ -1,10 +1,13 @@
 # `ImageDraw` tests
+#
+# Limitation of `ImageDraw`: the shapes drawn don't seem to be antialiased.
 
 import os
 
 from PIL import Image, ImageDraw
 
 
+# MARK: - Polygon
 def test_draw_polygon_with_key_points():
     image: Image.Image = Image.new("L", (100, 100), 0)
 
@@ -30,9 +33,37 @@ def test_draw_regular_polygon():
     image.save("out/4/regular_polygon.png")
 
 
-# MARK: - Main
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-print(f"Working directory: {os.getcwd()}")
+# MARK: - Circle
+def test_draw_circle_and_ellipse():
+    """
+    Strangely, ellipses are drawn using bounding boxes.
 
-# test_draw_polygon_with_key_points()
-test_draw_regular_polygon()
+    But this way, in order to rotate them, I'll need to draw to a separate image, rotate, and paste.
+    Super annoying!
+    """
+    image: Image.Image = Image.new("RGB", (100, 100), (255, 255, 255))
+
+    # 2 acceptable bounding box formats.
+    bounding_box_1 = (0, 10, 50, 40)    # (x0, y0, x1, y1)
+    bounding_box_2 = ((50, 50), (100, 100))    # ((x0, y0), (x1, y1))
+
+    fill_color = (254, 193, 188)
+    stroke_color = (254, 107, 123)
+    stroke_width = 3
+
+    draw = ImageDraw.Draw(image)
+    draw.ellipse(bounding_box_1, fill=fill_color, outline=stroke_color, width=stroke_width)
+    draw.ellipse(bounding_box_2, fill=fill_color, outline=stroke_color, width=stroke_width)
+
+    image.save("out/4/circle_and_ellipse.png")
+
+
+# MARK: - Main
+if (__name__ == "__main__"):
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    print(f"Working directory: {os.getcwd()}")
+
+    # test_draw_polygon_with_key_points()
+    # test_draw_regular_polygon()
+
+    test_draw_circle_and_ellipse()
