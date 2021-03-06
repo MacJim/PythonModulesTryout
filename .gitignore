@@ -5,6 +5,7 @@
 # Outputs
 /numpy tests/out
 /PIL tests/out
+/matplotlib_tests/out
 
 # "Old" files
 *.old*
