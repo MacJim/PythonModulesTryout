@@ -6,6 +6,7 @@ from numpy.core.defchararray import title
 
 
 # MARK: - Histogram
+# MARK: Auto x label ranges
 def test_histogram():
     normal_distribution = np.random.normal(0, 1, (210000,))
     """
@@ -30,6 +31,7 @@ def test_histogram():
     plt.clf()
 
 
+# MARK: Log scale x label ranges
 def _plot_log_histogram(x: np.ndarray, bins_count: int, plot_save_filename: str):
     """
     Source: https://stackoverflow.com/questions/47850202/plotting-a-histogram-on-a-log-scale-with-matplotlib
@@ -51,6 +53,23 @@ def test_log_scale_histogram():
     _plot_log_histogram(log_uniform_distribution, bins_count, "out/hist_log_uniform.png")
 
 
+# MARK: Custom x label ranges (failed)
+def test_custom_scale_histogram():
+    """
+    Doesn't work as expected.
+
+    The longer the range, the wider the pillar in the image.
+    """
+    uniform_distribution = np.random.uniform(0.0, 1.5, (210000,))
+
+    bin_edges = [0.0, 0.1, 0.3, 0.7, 1.5]    # Ranges: 0.1, 0.2, 0.4, 0.8
+
+    plt.hist(uniform_distribution, bins=bin_edges)
+    plt.gca().set(title=f"Uniform Distribution, size: {np.size(uniform_distribution)}")
+    plt.savefig("out/hist_custom_uniform_1.png")
+    plt.clf()
+
+
 # MARK: - Main
 if (__name__ == "__main__"):
     # MARK: Switch to current dir
@@ -58,4 +77,5 @@ if (__name__ == "__main__"):
     print(f"Working directory: {os.getcwd()}")
 
     # test_histogram()
-    test_log_scale_histogram()
+    # test_log_scale_histogram()
+    test_custom_scale_histogram()
