@@ -2,7 +2,6 @@ import os
 
 import numpy as np
 import matplotlib.pyplot as plt
-from numpy.core.defchararray import title
 
 
 # MARK: - Histogram
@@ -59,6 +58,8 @@ def test_custom_scale_histogram():
     Doesn't work as expected.
 
     The longer the range, the wider the pillar in the image.
+
+    Use `plt.bar` instead (see the `bar.test_bar` function).
     """
     uniform_distribution = np.random.uniform(0.0, 1.5, (210000,))
 
@@ -66,7 +67,7 @@ def test_custom_scale_histogram():
 
     plt.hist(uniform_distribution, bins=bin_edges)
     plt.gca().set(title=f"Uniform Distribution, size: {np.size(uniform_distribution)}")
-    plt.savefig("out/hist_custom_uniform_1.png")
+    plt.savefig("out/hist_custom_uniform.png")
     plt.clf()
 
 
