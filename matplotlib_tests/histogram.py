@@ -1,7 +1,14 @@
 import os
+import typing
 
 import numpy as np
 import matplotlib.pyplot as plt
+
+from file_helper import create_plot_dir
+
+
+# MARK: - Directories
+HIST_ROOT_DIR: typing.Final = "out/hist"
 
 
 # MARK: - Histogram
@@ -21,12 +28,12 @@ def test_histogram():
 
     plt.hist(normal_distribution, bins=bins_count)
     plt.gca().set(title=f"Normal Distribution, size: {np.size(normal_distribution)}")
-    plt.savefig("out/hist_normal.png")
+    plt.savefig(os.path.join(HIST_ROOT_DIR, "normal.png"))
     plt.clf()    # Clear the current figure.
 
     plt.hist(uniform_distribution, bins=bins_count)
     plt.gca().set(title=f"Uniform Distribution, size: {np.size(uniform_distribution)}")
-    plt.savefig("out/hist_uniform.png")
+    plt.savefig(os.path.join(HIST_ROOT_DIR, "uniform.png"))
     plt.clf()
 
 
@@ -67,16 +74,18 @@ def test_custom_scale_histogram():
 
     plt.hist(uniform_distribution, bins=bin_edges)
     plt.gca().set(title=f"Uniform Distribution, size: {np.size(uniform_distribution)}")
-    plt.savefig("out/hist_custom_uniform.png")
+    plt.savefig(os.path.join(HIST_ROOT_DIR, "custom_uniform.png"))
     plt.clf()
 
 
 # MARK: - Main
-if (__name__ == "__main__"):
+if __name__ == "__main__":
     # MARK: Switch to current dir
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     print(f"Working directory: {os.getcwd()}")
 
-    # test_histogram()
+    create_plot_dir(HIST_ROOT_DIR)
+
+    test_histogram()
     # test_log_scale_histogram()
     test_custom_scale_histogram()
