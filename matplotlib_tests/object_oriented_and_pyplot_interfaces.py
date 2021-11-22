@@ -7,6 +7,8 @@ Source: https://matplotlib.org/stable/tutorials/introductory/usage.html#the-obje
 2. Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting
 
 Generally: Use 1 for non-interactive plotting, and 2 for interactive plotting (e.g. Jupyter).
+
+My opinion: 2 is there to mimic MATLAB. Just use 1 as a programmer.
 """
 
 import os
@@ -27,6 +29,7 @@ def test_object_oriented():
     # print(xs.dtype)    # float64
 
     # Create a figure containing a single axes.
+    fig: plt.Figure
     ax: plt.Axes
     fig, ax = plt.subplots()
 
@@ -40,12 +43,12 @@ def test_object_oriented():
     ax.set_ylabel("y")
 
     # Add title.
-    ax.set_title("Object-Oriented Style")
+    ax.set_title("Object-Oriented")
 
     # Take data labels from the artists, and convert them into a legend.
     ax.legend()
 
-    plt.savefig(os.path.join(PLOT_ROOT_DIR, "object_oriented.svg"))
+    fig.savefig(os.path.join(PLOT_ROOT_DIR, "object_oriented.svg"))
 
 
 def test_pyplot():
