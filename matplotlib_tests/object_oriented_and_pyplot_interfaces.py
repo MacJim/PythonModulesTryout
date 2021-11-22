@@ -34,9 +34,11 @@ def test_object_oriented():
     fig, ax = plt.subplots()
 
     # Plot data on the axes.
-    ax.plot(x, x, label="y = x")
-    ax.plot(x, x ** 2, label="y = x^2")
-    ax.plot(x, x ** 3, label="y = x^3")
+    ax.plot(x, x, label="$y = x$")
+    ax.plot(x, x ** 2, label="$y = x^2$")
+    ax.plot(x, x ** 3, label="$y = x^3$")
+    # Matplotlib can parse TeX expressions enclosed in `$` pairs.
+    # For convenience, use raw strings (r"") to treat backslashes as literal characters.
 
     # Add x and y labels to the axes.
     ax.set_xlabel("x")
@@ -60,9 +62,9 @@ def test_pyplot():
     x = np.linspace(0, 2, 1000)
 
     # Plot data on the implicitly created axes.
-    plt.plot(x, x, label="y = x")
-    plt.plot(x, x ** 2, label="y = x^2")
-    plt.plot(x, x ** 3, label="y = x^3")
+    plt.plot(x, x, label="$y = x$")
+    plt.plot(x, x ** 2, label="$y = x^2$")
+    plt.plot(x, x ** 3, label="$y = x^3$")
 
     # Add x and y labels to the implicitly created axes.
     plt.xlabel("x")
