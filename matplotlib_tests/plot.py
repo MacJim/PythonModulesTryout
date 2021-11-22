@@ -88,6 +88,21 @@ def test_formatting():
     fig.savefig(os.path.join(OUT_DIR, "formatting.svg"))
 
 
+def test_categorical_x_values():
+    names = ["Custom Label A", "Custom Label B", "Custom Label C"]
+    values = [1, 3, 7]
+
+    fig: plt.Figure
+    ax: plt.Axes
+    fig, ax = plt.subplots()
+
+    ax.plot(names, values, "-o")
+
+    ax.set_title("Categorical (Arbitrary) X Values")
+
+    fig.savefig(os.path.join(OUT_DIR, "categorical_x_values.svg"))
+
+
 def test_tick_interval():
     pass
 
@@ -101,4 +116,5 @@ if __name__ == "__main__":
     create_plot_dir(OUT_DIR)
 
     # test_default_x_values()
-    test_formatting()
+    # test_formatting()
+    test_categorical_x_values()
