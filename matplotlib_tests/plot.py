@@ -103,8 +103,19 @@ def test_categorical_x_values():
     fig.savefig(os.path.join(OUT_DIR, "categorical_x_values.svg"))
 
 
-def test_tick_interval():
-    pass
+def test_nonlinear_axes():
+    x = np.linspace(0, 5, 10000)
+
+    fig: plt.Figure
+    ax: plt.Axes
+    fig, ax = plt.subplots()
+
+    ax.plot(x, np.e ** x, label="$y = e^x$")
+    ax.legend()
+    ax.set_yscale("log")
+    ax.set_title("(Natural) Log Scale")
+
+    fig.savefig(os.path.join(OUT_DIR, "nonlinear_axes.svg"))
 
 
 # MARK: - Main
@@ -117,4 +128,5 @@ if __name__ == "__main__":
 
     # test_default_x_values()
     # test_formatting()
-    test_categorical_x_values()
+    # test_categorical_x_values()
+    test_nonlinear_axes()
